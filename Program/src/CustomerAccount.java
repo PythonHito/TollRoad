@@ -83,7 +83,63 @@ public class CustomerAccount implements Comparable<CustomerAccount> {
     }
 
     public String toString(){
-        return "Poo";
+        return firstName + " " + lastName + ": " + vehicle.getRegistrationNum();
+    }
+
+    public static void main(String[] args){
+        Vehicle customer1Vehicle = new Car("C001 B01", "Hyundai", 4);
+        CustomerAccount customer1 = new CustomerAccount("Dave", "Gloat", 1000,
+                                                        customer1Vehicle);
+
+
+        //Test accessor final mechanism
+        System.out.println(customer1.getAccountBalance() == 1000);
+        int hi = customer1.getAccountBalance();
+        hi = 10;
+        System.out.println(customer1.getAccountBalance() == 1000);
+
+        //makeTrip tests
+        try {
+            int basicCost = customer1.makeTrip();
+            System.out.println(basicCost == 500);
+
+            customer1.addFunds(500);
+
+            //Friends discount test
+            customer1.activateFriendsAndFamilyDiscount();
+            int friendsDiscountCost = customer1.makeTrip();
+            System.out.println(friendsDiscountCost == 450);
+
+            customer1.addFunds(450);
+
+            //Staff discount test
+            customer1.activateStaffDiscount();
+            int staffDiscountCost = customer1.makeTrip();
+            System.out.println(staffDiscountCost == 250);
+
+            customer1.addFunds(250);
+
+            customer1.deactivateDiscount();
+        } catch (InsufficientAccountBalanceException e) {
+            System.err.println(e);
+        }
+
+        //Test that exception InsufficientAccountBalanceException is raised appropiately
+        try{
+            customer1.makeTrip();
+            customer1.makeTrip();
+            customer1.makeTrip();
+
+
+            //Should never reach this point!
+            System.out.println(false);
+        } catch (InsufficientAccountBalanceException e){
+            //Bypasses println(false)
+        }
+
+        System.out.println(customer1);
+        //TODO: Complete this bollocks when you care
+
     }
 
 
