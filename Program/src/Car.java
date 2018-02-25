@@ -1,5 +1,5 @@
 public class Car extends Vehicle {
-    protected final int numberOfSeats;
+    private final int numberOfSeats;
 
     @Override
     public int calculateBasicTripCost() {
@@ -15,6 +15,7 @@ public class Car extends Vehicle {
         this.numberOfSeats = numberOfSeats;
     }
 
+
     //TODO: Sort setter and stuff
 
     public int getNumberOfSeats(){
@@ -26,12 +27,12 @@ public class Car extends Vehicle {
         Car bigCar = new Car("1M R1CH", "Mercedes", 20);
 
         //Testing Vehicle methods
-        assert(car.getRegistrationNum().equals("FUN R3G"));
-        assert(car.getVehicleMake().equals("Toyota"));
+        System.out.println(car.getRegistrationNum().equals("FUN R3G"));
+        System.out.println(car.getVehicleMake().equals("Toyota"));
 
         //Testing Car methods
-        assert(car.getNumberOfSeats() == 5);
-        assert(car.calculateBasicTripCost() == 500);
-        assert(bigCar.calculateBasicTripCost() == 600);
+        System.out.println(car.getNumberOfSeats() == 5);
+        System.out.println(car.calculateBasicTripCost() == 500);
+        System.out.println(bigCar.calculateBasicTripCost() == 600);
     }
 }

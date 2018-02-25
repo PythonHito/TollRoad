@@ -1,9 +1,15 @@
 public class CustomerAccount implements Comparable<CustomerAccount> {
-    protected final String firstName;
-    protected final String lastName;
-    protected final Vehicle vehicle;
-    protected int accountBalance;
-    protected DiscountType discount;
+    private final String firstName;
+    private final String lastName;
+    private final Vehicle vehicle;
+    private int accountBalance;
+    private DiscountType discount;
+
+    private enum DiscountType {
+        NONE,
+        STAFF,
+        FRIENDS_AND_FAMILY
+    }
 
     CustomerAccount(String firstName, String lastName, int accountBalance, Vehicle vehicle){
         this.firstName = firstName;
@@ -14,14 +20,11 @@ public class CustomerAccount implements Comparable<CustomerAccount> {
     }
 
     public int getAccountBalance() {
-        //TODO: Check that this... situation is ok
-        final int temp = accountBalance;
-        return temp;
+        return accountBalance;
     }
 
     public DiscountType getDiscount() {
-        final DiscountType temp = discount;
-        return temp;
+        return discount;
     }
 
     public String getFirstName() {
@@ -79,7 +82,7 @@ public class CustomerAccount implements Comparable<CustomerAccount> {
     }
 
     public int compareTo(CustomerAccount customer){
-        return this.vehicle.getRegistrationNum().compareTo(customer.vehicle.getRegistrationNum());
+        return this.getVehicle().getRegistrationNum().compareTo(customer.getVehicle().getRegistrationNum());
     }
 
     public String toString(){
@@ -91,8 +94,8 @@ public class CustomerAccount implements Comparable<CustomerAccount> {
         CustomerAccount customer1 = new CustomerAccount("Dave", "Gloat", 1000,
                                                         customer1Vehicle);
 
-
-        //Test accessor final mechanism
+        //TODO: DO THIS THING PLEASE
+        //Test that collection accessors return deep copies
         System.out.println(customer1.getAccountBalance() == 1000);
         int hi = customer1.getAccountBalance();
         hi = 10;
