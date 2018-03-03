@@ -86,7 +86,7 @@ public class CustomerAccount implements Comparable<CustomerAccount> {
     }
 
     public String toString(){
-        return firstName + " " + lastName + ": " + vehicle.getRegistrationNum();
+        return firstName + " " + lastName + ": " + vehicle.getClass().getSimpleName() +  " " + vehicle.getRegistrationNum();
     }
 
     public static void main(String[] args){

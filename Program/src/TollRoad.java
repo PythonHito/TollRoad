@@ -24,16 +24,24 @@ public class TollRoad {
         customers.put(customer.getVehicle().getRegistrationNum(), customer);
     }
 
-    public CustomerAccount findCustomer(String regNum){
-        return customers.get(regNum);
+    public CustomerAccount findCustomer(String regNum) throws CustomerNotFoundException{
+        CustomerAccount customer = customers.get(regNum);
+        if (customer == null){
+            throw new CustomerNotFoundException();
+        }
+        else {
+            return customer;
+        }
+
     }
 
-    public void chargeCustomer(String regNum) throws InsufficientAccountBalanceException{
-        CustomerAccount customer = customers.get(regNum);
-
-        try{
+    public void chargeCustomer(String regNum) throws InsufficientAccountBalanceException, CustomerNotFoundException{
+        try {
+            CustomerAccount customer = findCustomer(regNum);
             int profit = customer.makeTrip();
             moneyMade = moneyMade + profit;
+        } catch (CustomerNotFoundException e){
+            throw e;
         } catch (InsufficientAccountBalanceException e){
             throw e;
         }
@@ -80,7 +88,11 @@ public class TollRoad {
             System.out.println(false);
 
         } catch (InsufficientAccountBalanceException e){
-            System.out.println(toll.findCustomer("C001 B01").getAccountBalance() == 0);
+            //Should terminate at this point
+            System.out.println(true);
+        } catch (CustomerNotFoundException e){
+            //Shouldn't reach this point!
+            System.err.println(false);
         }
 
         System.out.println(toll);
