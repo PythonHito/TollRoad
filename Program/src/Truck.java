@@ -1,5 +1,5 @@
 public class Truck extends Vehicle {
-    protected final int numberOfTrailers;
+    private final int numberOfTrailers;
 
     @Override
     public int calculateBasicTripCost() {

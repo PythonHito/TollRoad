@@ -1,5 +1,5 @@
 public class Van extends Vehicle {
-    protected final int payload;
+    private final int payload;
 
     @Override
     public int calculateBasicTripCost() {

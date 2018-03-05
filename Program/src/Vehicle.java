@@ -1,6 +1,6 @@
 public abstract class Vehicle {
-    protected final String registrationNum;
-    protected final String vehicleMake;
+    private final String registrationNum;
+    private final String vehicleMake;
 
     Vehicle(String registrationNum, String vehicleMake){
         this.registrationNum = registrationNum;

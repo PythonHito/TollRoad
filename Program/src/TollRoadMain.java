@@ -1,5 +1,5 @@
-import java.io.*;
-import java.util.ArrayList;
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.Scanner;
 
 
@@ -65,8 +65,8 @@ public class TollRoadMain {
             scan.useDelimiter("\\$");
             while (scan.hasNext()){
                 String instruction = scan.next();
-                System.out.println(instruction);
                 if (instruction.charAt(0) == 'a'){
+                    //addFund processing
                     String[] data = instruction.split(",");
                     String regNum = data[1];
                     int amount = Integer.parseInt(data[2]);
@@ -82,6 +82,7 @@ public class TollRoadMain {
 
                 }
                 else {
+                    //makeTrip processing
                     String[] data = instruction.split(",");
                     String regNum = data[1];
 
@@ -108,8 +109,7 @@ public class TollRoadMain {
     static public void main(String[] args){
         //Testing TollRoadMain methods
         TollRoad toll = initialiseTollRoadFromFile();
-        //Have tested with customerData.txt present; successfully printed error message and exited program
-        System.out.println(toll.getCustomers());
+        //Have tested without customerData.txt present; successfully printed error message and exited program
         //Inspected by eye that customerAccounts were created accurately
 
         simulateFromFile(toll);
