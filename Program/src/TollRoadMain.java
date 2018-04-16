@@ -13,6 +13,7 @@ public class TollRoadMain {
                 String record = scan.next();
                 String[] data = record.split(",");
 
+                //Label data elements
                 String vehicleType = data[0];
                 String regNum = data[1];
                 String firstName = data[2];
@@ -33,7 +34,6 @@ public class TollRoadMain {
 
                 CustomerAccount currentCustomer = new CustomerAccount(firstName, lastName,
                                                                       startingBalance, vehicle);
-
                 if (discountType.equals("FRIENDS_AND_FAMILY")){
                     currentCustomer.activateFriendsAndFamilyDiscount();
                 } else if (discountType.equals("STAFF")){
@@ -61,43 +61,51 @@ public class TollRoadMain {
             while (scan.hasNext()){
                 String instruction = scan.next();
                 String[] data = instruction.split(",");
+
                 String method = data[0];
                 if (method.equals("addFunds")){
-                    //addFund processing
-                    String regNum = data[1];
-                    int amount = Integer.parseInt(data[2]);
-
-                    try {
-                        road.findCustomer(regNum).addFunds(amount);
-                        //Print this if customer found
-                        System.out.println(regNum + ": " + amount + " added successfully");
-                    } catch (CustomerNotFoundException e){
-                        //Otherwise print this
-                        System.out.println(regNum + ": addFunds failed. Customer does not exist");
-                    }
-
+                    addFundsSimulate(road, data);
                 }
                 else if (method.equals("makeTrip")){
-                    //makeTrip processing
-                    String regNum = data[1];
-
-                    try {
-                        road.chargeCustomer(regNum);
-                        //If customer exists and has sufficient money print this
-                        System.out.println(regNum + ": Trip completed successfully");
-                    } catch (InsufficientAccountBalanceException e){
-                        //Else if they don't have sufficient money print this
-                        System.out.println(regNum + ": makeTrip failed. Insufficient funds");
-                    } catch (CustomerNotFoundException e) {
-                        //Else if they don't exist print this
-                        System.out.println(regNum + ": makeTrip failed. CustomerAccount does not exist");
-                    }
+                    makeTripSimulate(road, data);
                 }
             }
         }
         catch (FileNotFoundException e) {
             System.out.println("transactions.txt doesn't exist, please place in directory");
             System.exit(1);
+        }
+    }
+
+    static private void addFundsSimulate(TollRoad road, String[] data){
+        String regNum = data[1];
+        int amount = Integer.parseInt(data[2]);
+
+        try {
+            road.findCustomer(regNum).addFunds(amount);
+            //Print this if customer found
+            System.out.println(regNum + ": " + amount + " added successfully");
+        } catch (CustomerNotFoundException e){
+            //Otherwise print this
+            System.out.println(regNum + ": addFunds failed. Customer does not exist");
+        }
+
+    }
+
+    static private void makeTripSimulate(TollRoad road, String[] data){
+        //makeTrip processing
+        String regNum = data[1];
+
+        try {
+            road.chargeCustomer(regNum);
+            //If customer exists and has sufficient money print this
+            System.out.println(regNum + ": Trip completed successfully");
+        } catch (InsufficientAccountBalanceException e){
+            //Else if they don't have sufficient money print this
+            System.out.println(regNum + ": makeTrip failed. Insufficient funds");
+        } catch (CustomerNotFoundException e) {
+            //Else if they don't exist print this
+            System.out.println(regNum + ": makeTrip failed. CustomerAccount does not exist");
         }
     }
 

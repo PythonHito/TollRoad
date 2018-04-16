@@ -25,9 +25,9 @@ public class Truck extends Vehicle {
         Truck australianRoadTrain = new Truck("N0T T1NY", "Fosters", 16);
 
         //Testing Truck methods
-        assert(teenyestTruck.getNumberOfTrailers() == 1);
+        System.out.println(teenyestTruck.getNumberOfTrailers() == 1);
 
-        assert(teenyestTruck.calculateBasicTripCost() == 1250);
-        assert(australianRoadTrain.calculateBasicTripCost() == 1500);
+        System.out.println(teenyestTruck.calculateBasicTripCost() == 1250);
+        System.out.println(australianRoadTrain.calculateBasicTripCost() == 1500);
     }
 }

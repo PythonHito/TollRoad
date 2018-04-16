@@ -27,11 +27,11 @@ public class Van extends Vehicle {
         Van bigMeanerVan = new Van("4UT0 GL455", "Citroen", 850);
 
         //Testing Van methods
-        assert(smallVan.getPayload() == 450);
+        System.out.println(smallVan.getPayload() == 450);
 
-        assert(smallVan.calculateBasicTripCost() == 500);
-        assert(bigVan.calculateBasicTripCost() == 750);
-        assert(bigMeanerVan.calculateBasicTripCost() == 1000);
+        System.out.println(smallVan.calculateBasicTripCost() == 500);
+        System.out.println(bigVan.calculateBasicTripCost() == 750);
+        System.out.println(bigMeanerVan.calculateBasicTripCost() == 1000);
 
     }
 }
