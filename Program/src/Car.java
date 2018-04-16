@@ -15,9 +15,6 @@ public class Car extends Vehicle {
         this.numberOfSeats = numberOfSeats;
     }
 
-
-    //TODO: Sort setter and stuff
-
     public int getNumberOfSeats(){
         return this.numberOfSeats;
     }

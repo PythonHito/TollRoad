@@ -56,16 +56,14 @@ public class CustomerAccount implements Comparable<CustomerAccount> {
     }
 
     public int makeTrip() throws InsufficientAccountBalanceException{
-        //TODO: assuming rounding up costs is correct
-
         int basicCost = vehicle.calculateBasicTripCost();
         int finalCost;
 
         if (discount.equals(DiscountType.STAFF)){
-            finalCost = (int)Math.ceil(0.5 * basicCost);
+            finalCost = (int)Math.floor(0.5 * basicCost);
         }
         else if (discount.equals(DiscountType.FRIENDS_AND_FAMILY)){
-            finalCost = (int)Math.ceil(0.9 * basicCost);
+            finalCost = (int)Math.floor(0.9 * basicCost);
         }
         else {
             finalCost = basicCost;
@@ -93,14 +91,6 @@ public class CustomerAccount implements Comparable<CustomerAccount> {
         Vehicle customer1Vehicle = new Car("C001 B01", "Hyundai", 4);
         CustomerAccount customer1 = new CustomerAccount("Dave", "Gloat", 1000,
                                                         customer1Vehicle);
-
-        //TODO: DO THIS THING PLEASE
-        //Test that collection accessors return deep copies
-        System.out.println(customer1.getAccountBalance() == 1000);
-        int hi = customer1.getAccountBalance();
-        hi = 10;
-        System.out.println(customer1.getAccountBalance() == 1000);
-
         //makeTrip tests
         try {
             int basicCost = customer1.makeTrip();
@@ -138,11 +128,10 @@ public class CustomerAccount implements Comparable<CustomerAccount> {
             System.out.println(false);
         } catch (InsufficientAccountBalanceException e){
             //Bypasses println(false)
+            System.out.println(true);
         }
 
         System.out.println(customer1);
-        //TODO: Complete this bollocks when you care
-
     }
 
 

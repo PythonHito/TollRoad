@@ -1,8 +1,5 @@
 import java.util.HashMap;
 
-//TODO: Sort into different packages and poop
-//TODO: Check how to represent enums in uml
-
 public class TollRoad {
     private HashMap<String, CustomerAccount> customers;
     private int moneyMade;
@@ -49,7 +46,6 @@ public class TollRoad {
 
     public String toString(){
         return "Money collected: " + moneyMade + " Customers: " + customers;
-        //TODO: DO THIS PLEASE
     }
 
     public static void main(String[] args){

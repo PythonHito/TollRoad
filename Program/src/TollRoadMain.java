@@ -2,11 +2,6 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 
-
-//TODO: Ask about whether vehicleMake is consisently there always like
-//TODO: Ask about static methods
-//TODO: Make a whole test thingy and stuff
-
 public class TollRoadMain {
     static public TollRoad initialiseTollRoadFromFile(){
         File file = new File("customerData.txt");
@@ -65,9 +60,10 @@ public class TollRoadMain {
             scan.useDelimiter("\\$");
             while (scan.hasNext()){
                 String instruction = scan.next();
-                if (instruction.charAt(0) == 'a'){
+                String[] data = instruction.split(",");
+                String method = data[0];
+                if (method.equals("addFunds")){
                     //addFund processing
-                    String[] data = instruction.split(",");
                     String regNum = data[1];
                     int amount = Integer.parseInt(data[2]);
 
@@ -81,9 +77,8 @@ public class TollRoadMain {
                     }
 
                 }
-                else {
+                else if (method.equals("makeTrip")){
                     //makeTrip processing
-                    String[] data = instruction.split(",");
                     String regNum = data[1];
 
                     try {
@@ -113,6 +108,7 @@ public class TollRoadMain {
         //Inspected by eye that customerAccounts were created accurately
 
         simulateFromFile(toll);
-        System.out.println("Total profit: " + toll.getMoneyMade());
+        String str = String.format("Total profit: £%,d", toll.getMoneyMade());
+        System.out.println(str);
     }
 }
